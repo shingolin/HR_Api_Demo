@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JBHRIS.Api.Bll\JBHRIS.Api.Bll.csproj" />
+    <ProjectReference Include="..\JBHRIS.Api.Dal\JBHRIS.Api.Dal.csproj" />
+    <ProjectReference Include="..\JBHRIS.Api.Dto\JBHRIS.Api.Dto.csproj" />
+  </ItemGroup>
+
+</Project>
