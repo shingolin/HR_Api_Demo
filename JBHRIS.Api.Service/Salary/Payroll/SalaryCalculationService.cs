@@ -1,22 +1,18 @@
 ﻿using JBHRIS.Api.Bll.Salary.Payroll;
 using JBHRIS.Api.Dto.Salary.Payroll;
-using NLog;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
 
 namespace JBHRIS.Api.Service.Salary.Payroll
 {
     public class SalaryCalculationService : ISalaryCalculationService
     {
         private ISalaryCalculateModuleFactory _salaryCalculateModuleFactory;
-        private ILogger _logger;
-        public SalaryCalculationService(ILogger logger)
-        {
-            _logger = logger;
-        }
-        public SalaryCalculationService(ISalaryCalculateModuleFactory salaryCalculateModuleFactory, ILogger logger)
+        private ILog _logger;
+
+        public SalaryCalculationService(ISalaryCalculateModuleFactory salaryCalculateModuleFactory, ILog logger)
         {
             _salaryCalculateModuleFactory = salaryCalculateModuleFactory;
             _logger = logger;
@@ -46,5 +42,4 @@ namespace JBHRIS.Api.Service.Salary.Payroll
             return result;
         }
     }
-
 }
