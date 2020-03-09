@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
 namespace HR_Api_Demo
 {
     public class Startup
@@ -26,6 +26,18 @@ namespace HR_Api_Demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.Configure<Moduleregister>(Configuration.GetSection("Moduleregister"));
+            services.AddSingleton<NLog.ILogger>(NLog.LogManager.GetLogger("HR"));
+            var config = Configuration.GetSection("Moduleregister");
+            var conf = config.Get<Moduleregister>();
+            foreach(var mod in conf.Module)
+            {
+               var asm= Assembly.LoadFrom(conf.SourceDir+mod.SourcePath);
+                var typeInterface = asm.GetType(mod.Interface);
+                var typeClass= asm.GetType(mod.ConcreteClass);
+                services.AddScoped(typeInterface, typeClass);
+            }
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
