@@ -24,7 +24,7 @@ namespace JBHRIS.Api.Service.Salary.Payroll
         public SalaryCalculationResult Calculate(SalaryCalculationEntry salaryCalculationEntry)
         {
             _logger.Info("叫用薪資計算服務");
-            _logger.Info(salaryCalculationEntry);
+            _logger.Debug("傳入值：{@salaryCalculationEntry}", salaryCalculationEntry);
 
             SalaryCalculationResult result = new SalaryCalculationResult();
             foreach (string moduleType in salaryCalculationEntry.ModuleTypes)
@@ -42,7 +42,7 @@ namespace JBHRIS.Api.Service.Salary.Payroll
                 }
             }
             _logger.Info("計算完成");
-            _logger.Debug(result);
+            _logger.Debug("回傳值", result);
             return result;
         }
     }

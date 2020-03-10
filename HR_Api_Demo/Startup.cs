@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using JBHRIS.Api.Dto;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,15 +27,16 @@ namespace HR_Api_Demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.Configure<Moduleregister>(Configuration.GetSection("Moduleregister"));
+            services.Configure<ConfigurationDto>(Configuration);
             services.AddSingleton<NLog.ILogger>(NLog.LogManager.GetLogger("HR"));
-            var config = Configuration.GetSection("Moduleregister");
-            var conf = config.Get<Moduleregister>();
-            foreach(var mod in conf.Module)
+            //var config = Configuration.GetSection("Moduleregister");
+            var conf = Configuration.Get<ConfigurationDto>();
+            foreach (var mod in conf.ModuleRegister.Module)
             {
-               var asm= Assembly.LoadFrom(conf.SourceDir+mod.SourcePath);
-                var typeInterface = asm.GetType(mod.Interface);
-                var typeClass= asm.GetType(mod.ConcreteClass);
+                var asmInterface = Assembly.LoadFrom(conf.SourceDir + mod.InterfaceAssembly);
+                var asmConcrete = Assembly.LoadFrom(conf.SourceDir + mod.ConcreteClassAssembly);
+                var typeInterface = asmInterface.GetType(mod.Interface);
+                var typeClass = asmConcrete.GetType(mod.ConcreteClass);
                 services.AddScoped(typeInterface, typeClass);
             }
 

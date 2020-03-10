@@ -2,5 +2,7 @@
 {
     public class SalaryCalculationResult
     {
+        public bool State { get; set; }
+        public string Message { get; set; }
     }
 }

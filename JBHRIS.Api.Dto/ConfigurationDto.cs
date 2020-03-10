@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HR_Api_Demo
+namespace JBHRIS.Api.Dto
 {
 
-    public class Rootobject
+    public class ConfigurationDto
     {
         public Logging Logging { get; set; }
+        public string SourceDir { get; set; }
         public Moduleregister ModuleRegister { get; set; }
         public Salarycalculatemodules SalaryCalculateModules { get; set; }
         public string AllowedHosts { get; set; }
@@ -28,21 +29,30 @@ namespace HR_Api_Demo
 
     public class Moduleregister
     {
-        public string SourceDir { get; set; }
         public Module[] Module { get; set; }
     }
 
     public class Module
     {
-        public string SourcePath { get; set; }
+        public string InterfaceAssembly { get; set; }
         public string Interface { get; set; }
+        public string ConcreteClassAssembly { get; set; }
         public string ConcreteClass { get; set; }
         public string Description { get; set; }
     }
 
     public class Salarycalculatemodules
     {
-        public string BasicSalary { get; set; }
+        public Salarymodule[] SalaryModule { get; set; }
     }
+
+    public class Salarymodule
+    {
+        public string Name { get; set; }
+        public string ConcreteClassAssembly { get; set; }
+        public string ConcreteClass { get; set; }
+        public string Description { get; set; }
+    }
+
 
 }

@@ -9,7 +9,7 @@ namespace JBHRIS.Api.Bll.Salary.Payroll
     {
         public SalaryCalculationResult Calculate(SalaryCalculationEntry salaryCalculationEntry)
         {
-            throw new NotImplementedException();
+            return new SalaryCalculationResult { State = true, Message = "測試薪資模組" };
         }
     }
 }
