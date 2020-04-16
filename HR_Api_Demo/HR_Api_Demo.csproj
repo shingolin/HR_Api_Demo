@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JBHRIS.Api.Bll\JBHRIS.Api.Bll.csproj" />
+    <ProjectReference Include="..\JBHRIS.Api.Dal.JBHR\JBHRIS.Api.Dal.JBHR.csproj" />
     <ProjectReference Include="..\JBHRIS.Api.Dal\JBHRIS.Api.Dal.csproj" />
     <ProjectReference Include="..\JBHRIS.Api.Dto\JBHRIS.Api.Dto.csproj" />
     <ProjectReference Include="..\JBHRIS.Api.Service\JBHRIS.Api.Service.csproj" />

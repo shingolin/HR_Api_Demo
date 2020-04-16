@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,6 +31,7 @@ namespace HR_Api_Demo
             services.Configure<ConfigurationDto>(Configuration);
             services.AddSingleton<NLog.ILogger>(NLog.LogManager.GetLogger("HR"));
             //var config = Configuration.GetSection("Moduleregister");
+            services.AddDbContext<JBHRIS.Api.Dal.JBHR.JBHRContext>(options => options.UseSqlServer(Configuration["HrConnectionStrings:DefaultConnection"]));
             var conf = Configuration.Get<ConfigurationDto>();
             foreach (var mod in conf.ModuleRegister.Module)
             {
