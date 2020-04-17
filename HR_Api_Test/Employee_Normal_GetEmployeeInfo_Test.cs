@@ -2,6 +2,7 @@ using JBHRIS.Api.Dal.JBHR;
 using JBHRIS.Api.Dal.JBHR.Employee;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace HR_Api_Test
 {

@@ -41,7 +41,7 @@ namespace HR_Api_Demo
                 var typeClass = asmConcrete.GetType(mod.ConcreteClass);
                 services.AddScoped(typeInterface, typeClass);
             }
-
+            //test for ci
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
